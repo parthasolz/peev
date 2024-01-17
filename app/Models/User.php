@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -52,5 +53,10 @@ class User extends Authenticatable
     public function address()
     {
         return $this->morphMany(Address::class, 'addressable');
+    }
+
+    public function image(): MorphMany
+    {
+        return $this->morphMany(Image::class, 'imageable');
     }
 }

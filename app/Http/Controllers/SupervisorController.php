@@ -44,6 +44,13 @@ class SupervisorController extends Controller
         return redirect()->back()->with('success', 'Supervisor created successfully!');
     }
 
+    public function show($id)
+    {
+        $visor_detail = User::where('id', $id)->with('address')->with('image')->first();
+        $visor_projects = Project::where('superVisor_id', $id)->get();
+        return view('admin.supervisor.view', ['visor_project' =>  $visor_projects, 'visor_detail' => $visor_detail]);
+    }
+
     public function edit($id)
     {
         $supervisor_edit = User::where('id', $id)->with('address')->first();

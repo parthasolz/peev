@@ -38,6 +38,7 @@ Route::prefix('admin/vendor')->middleware('auth')->group(function () {
     Route::get('/create', [VendorController::class, 'create'])->name('admin.vendor.create');
     Route::get('/', [VendorController::class, 'index'])->name('admin.vendor.index');
     Route::post('/store', [VendorController::class, 'store'])->name('admin.vendor.store');
+    Route::get('/show/{id}', [VendorController::class, 'show'])->name('admin.vendor.show');
     Route::get('/edit/{id}', [VendorController::class, 'edit'])->name('admin.vendor.edit');
     Route::post('/update/{id}', [VendorController::class, 'update'])->name('admin.vendor.update');
     Route::get('/trash/{id}', [VendorController::class, 'trash'])->name('admin.vendor.trash');
@@ -50,6 +51,7 @@ Route::prefix('admin/supervisor')->middleware('auth')->group(function () {
     Route::get('/create', [SupervisorController::class, 'create'])->name('admin.supervisor.create');
     Route::get('/', [SupervisorController::class, 'index'])->name('admin.supervisor.index');
     Route::post('/store', [SupervisorController::class, 'store'])->name('admin.supervisor.store');
+    Route::get('/show/{id}', [SupervisorController::class, 'show'])->name('admin.supervisor.show');
     Route::get('/edit/{id}', [SupervisorController::class, 'edit'])->name('admin.supervisor.edit');
     Route::post('/update/{id}', [SupervisorController::class, 'update'])->name('admin.supervisor.update');
     Route::get('/trash/{id}', [SupervisorController::class, 'trash'])->name('admin.supervisor.trash');

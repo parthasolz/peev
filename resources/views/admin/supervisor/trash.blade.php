@@ -1,4 +1,4 @@
-<x-adminlayout title="Vendor">
+<x-adminlayout title="SuperVisor| Trash">
     <div class="page-content">
         <div class="container-fluid">
 
