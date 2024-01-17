@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
-            $table->integer('vendor_id');
-            $table->integer('superVisor_id');
+            $table->foreignId('vendor_id')->constraint("users")->onDelete('cascade');
+            $table->foreignId('superVisor_id')->constraint("users")->onDelete('cascade');
             $table->string('title');
             $table->string('delivery_date');
             $table->string('amenities');
