@@ -6,14 +6,11 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between"> 
-                        <h4 class="mb-sm-0 font-size-18">SuperVisors </h4>                       
+                        <h4 class="mb-sm-0 font-size-18">Trashed Vendors </h4>                       
                         <div class="page-title-right">
-                            <div class="page-title-right">
-                                <a href="{{ route('admin.supervisor.create') }}" class="btn btn-outline-secondary btn-sm">Add New</a>
-                            </div>
                             <ol class="breadcrumb m-0">
                                 <!-- <li class="breadcrumb-item"><a href="javascript: void(0);">Projects</a></li> -->
-                                <li class="breadcrumb-item active">SuperVisor</li>
+                                <li class="breadcrumb-item active">Trashed Vendors</li>
                             </ol>
                         </div>
 
@@ -36,11 +33,11 @@
                                             <th>Email</th>
                                             <th>Phone</th>
                                             <th>Status</th>
-                                            <th>Options</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($visor as $user)
+                                        @foreach($trashed as $user)
                                         <tr>
                                             <th scope="row">{{ $loop->iteration }}</th>
                                             <td>{{ $user->name  }}</td>
@@ -53,10 +50,8 @@
                                             @endif
                                             <td class="{{$col}}">{{$user->status == 1 ? 'Active' : 'Inactive' }}</td>
                                             <td>
-                                                <a href="{{route('admin.supervisor.edit',$user->id)}}"  class="btn btn-light btn-sm">Edit</a>
-                                                <a href="{{route('admin.supervisor.trash',$user->id)}}" onclick="return confirm('Are u sure u wanna Trash this User, click ok to continue')" class="btn btn-light btn-sm">Delete</a>
-                                                <a class="btn btn-light btn-sm">View</a>
-                                                
+                                                <a href="{{route('admin.vendor.restore',$user->id)}}" onclick="return confirm('Are u sure u wanna Restore this User, click ok to continue')" class="btn btn-light btn-sm">Restore</a>
+                                                <a href="{{route('admin.vendor.delete',$user->id)}}" onclick="return confirm('Are u sure u wanna Delete this User, click ok to continue')" class="btn btn-light btn-sm">Delete</a>                                                
                                                 {{-- <a class="btn btn-outline-secondary btn-sm edit" title="Edit">
                                                 <i class="fas fa-pencil-alt"></i>
                                             </a>

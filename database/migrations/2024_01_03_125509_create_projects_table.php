@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
+            $table->integer('vendor_id');
+            $table->integer('superVisor_id');
             $table->string('title');
             $table->string('delivery_date');
             $table->string('amenities');
@@ -21,6 +23,7 @@ return new class extends Migration
             $table->text('details');
             $table->string('price');
             $table->boolean('status')->default(1);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

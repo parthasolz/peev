@@ -26,23 +26,32 @@
                         <span key="t-projects">Projects</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('admin.project.index') }}" key="t-p-grid">Projects Grid</a></li>
-                        <li><a href="{{ route('admin.project.index') }}" key="t-p-list">Projects List</a></li>
-                        <li><a href="projects-overview.html" key="t-p-overview">Project Overview</a></li>
-                        <li><a href="{{ route('admin.project.create') }}" key="t-create-new">Create New</a></li>
+                        <li><a href="{{ route('admin.project.index') }}" key="t-p-list">All</a></li>
+                        <li><a href="{{ route('admin.project.create') }}" key="t-create-new">Add New</a></li>
                     </ul>
                 </li>
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="bx bx-briefcase-alt-2"></i>
-                        <span key="t-vendor">Vendor</span>
+                        <span key="t-vendor">Vendors</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('admin.project.index') }}" key="t-p-grid">Vendor Grid</a></li>
-                        <li><a href="{{ route('admin.vendor.index') }}" key="t-p-list">Vendor List</a></li>
-                        <li><a href="projects-overview.html" key="t-p-overview">Project Overview</a></li>
-                        <li><a href="{{ route('admin.vendor.create') }}" key="t-create-new">Create New</a></li>
+                        <li><a href="{{ route('admin.vendor.index') }}" key="t-p-list">All</a></li>
+                        <li><a href="{{ route('admin.vendor.create') }}" key="t-create-new">Add New</a></li>
+                        <li><a href="{{ route('admin.vendor.trashed') }}" key="t-p-list">Trash</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="bx bx-briefcase-alt-2"></i>
+                        <span key="t-vendor">Supervisors</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('admin.supervisor.index') }}" key="t-p-list">All</a></li>
+                        <li><a href="{{ route('admin.supervisor.create') }}" key="t-create-new">Add New</a></li>
+                        <li><a href="{{ route('admin.supervisor.trashed') }}" key="t-p-list">Trash</a></li>
                     </ul>
                 </li>
 

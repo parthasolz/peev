@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\SupervisorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,5 +38,22 @@ Route::prefix('admin/vendor')->middleware('auth')->group(function () {
     Route::get('/create', [VendorController::class, 'create'])->name('admin.vendor.create');
     Route::get('/', [VendorController::class, 'index'])->name('admin.vendor.index');
     Route::post('/store', [VendorController::class, 'store'])->name('admin.vendor.store');
+    Route::get('/edit/{id}', [VendorController::class, 'edit'])->name('admin.vendor.edit');
+    Route::post('/update/{id}', [VendorController::class, 'update'])->name('admin.vendor.update');
+    Route::get('/trash/{id}', [VendorController::class, 'trash'])->name('admin.vendor.trash');
+    Route::get('/restore/{id}', [VendorController::class, 'restore'])->name('admin.vendor.restore');
+    Route::get('/trashed', [VendorController::class, 'trashed'])->name('admin.vendor.trashed');
+    Route::get('/delete/{id}', [VendorController::class, 'delete'])->name('admin.vendor.delete');
 });
 
+Route::prefix('admin/supervisor')->middleware('auth')->group(function () {
+    Route::get('/create', [SupervisorController::class, 'create'])->name('admin.supervisor.create');
+    Route::get('/', [SupervisorController::class, 'index'])->name('admin.supervisor.index');
+    Route::post('/store', [SupervisorController::class, 'store'])->name('admin.supervisor.store');
+    Route::get('/edit/{id}', [SupervisorController::class, 'edit'])->name('admin.supervisor.edit');
+    Route::post('/update/{id}', [SupervisorController::class, 'update'])->name('admin.supervisor.update');
+    Route::get('/trash/{id}', [SupervisorController::class, 'trash'])->name('admin.supervisor.trash');
+    Route::get('/restore/{id}', [SupervisorController::class, 'restore'])->name('admin.supervisor.restore');
+    Route::get('/trashed', [SupervisorController::class, 'trashed'])->name('admin.supervisor.trashed');
+    Route::get('/delete/{id}', [SupervisorController::class, 'delete'])->name('admin.supervisor.delete');
+});

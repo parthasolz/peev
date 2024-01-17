@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('username')->unique();
             $table->string('password');
             $table->boolean('status')->default(1);
+            $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
         });

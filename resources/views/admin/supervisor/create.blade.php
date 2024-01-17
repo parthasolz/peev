@@ -10,7 +10,7 @@
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item"><a href="{{ route('admin.vendor.index') }}">Vendor</a></li>
+                                <li class="breadcrumb-item"><a href="{{ route('admin.vendor.index') }}">SuperVisor</a></li>
                                 <li class="breadcrumb-item active">Create New</li>
                             </ol>
                         </div>
@@ -24,8 +24,8 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title mb-4">Create New Vendor</h4>
-                            <form action="{{ route('admin.vendor.store') }}" method="post" enctype="multipart/form-data">
+                            <h4 class="card-title mb-4">Create New SuperVisor</h4>
+                            <form action="{{ route('admin.supervisor.store') }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-6">

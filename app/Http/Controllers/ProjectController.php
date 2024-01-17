@@ -1,11 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Address;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\Image;
+use App\Models\User;
+use Illuminate\Support\Facades\Log;
 use Toastr;
 
 class ProjectController extends Controller
@@ -18,7 +22,9 @@ class ProjectController extends Controller
 
     public function create()
     {
-        return view('admin.project.create');
+        $vendors = User::where('user_role_id', 2)->where('status', 1)->orderBy('id', 'DESC')->get();
+        $superVisors = User::where('user_role_id', 3)->where('status', 1)->orderBy('id', 'DESC')->get();
+        return view('admin.project.create')->with(['vendo' => $vendors, 'svisors' => $superVisors]);
     }
 
     public function store(Request $request)
@@ -26,19 +32,20 @@ class ProjectController extends Controller
         try {
             DB::beginTransaction();
             $request->validate([
+                'vendor_id' => 'required',
+                'superVisor_id' => 'required',
                 'title' => 'required|string',
-                'details'=> 'required',
-                'delivery_date'=> 'required',
-                'price'=> 'required',
-                'type'=>'required',
-                'registration_number'=>'required',
-                'amenities'=> 'required',
-                'supervisor'=> 'required',
+                'details' => 'required',
+                'delivery_date' => 'required',
+                'price' => 'required',
+                'type' => 'required',
+                'registration_number' => 'required',
+                'amenities' => 'required',
             ]);
 
-            $status =  ($request->status) ? '1' : '0';
-
             $project = Project::create([
+                'vendor_id' => $request->vendor_id,
+                'superVisor_id' => $request->superVisor_id,
                 'title' => $request->title,
                 'details' => $request->details,
                 'delivery_date' => $request->delivery_date,
@@ -46,15 +53,30 @@ class ProjectController extends Controller
                 'type' => $request->type,
                 'amenities' => $request->amenities,
                 'registration_number' => $request->registration_number,
-                'status' => $status,
+                'status' => $request->status,
             ]);
+
+            if ($project) {
+                Address::Create(
+                    [
+                        'addressable_id' => $project->id,
+                        'addressable_type' => 'App\Models\Project',
+                        'address_line_1' => $request->address_line_1,
+                        'address_line_2'  => $request->address_line_2,
+                        'pin'  => $request->pin,
+                        'state'  => $request->state,
+                        'city'  => $request->city,
+                        'country'  => $request->country,
+                        'description'  => $request->description,
+                    ]
+                );
+            }
 
             if ($request->hasFile('images')) {
                 $files = $request->file('images');
                 foreach ($files as $file) {
                     $image_name = $file->hashName(); // Use $file instead of $files
                     $image_path = $file->storeAs('images', $image_name, 'public'); // Use $file instead of $files
-
                     Image::create([
                         'imageable_id' => $project->id,
                         'imageable_type' => 'App\Models\Project',
@@ -65,13 +87,12 @@ class ProjectController extends Controller
             }
             DB::commit();
             return redirect()->back()->with('success', 'Project create successfully!');
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             DB::rollBack();
-            \Log::error($e);
+            Log::error($e);
 
             return redirect()->back()->with('error', 'An error occurred while processing the request.');
         }
-
     }
 
     public function show($id)

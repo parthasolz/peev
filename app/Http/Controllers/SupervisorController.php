@@ -2,22 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+
 use App\Models\Address;
 use App\Models\Project;
 use App\Models\User;
-use Illuminate\Http\Request;
 
-class VendorController extends Controller
+class SupervisorController extends Controller
 {
     public function index()
     {
-        $vendors = User::where('user_role_id', 2)->orderBy('id', 'DESC')->get();
-        return view('admin.vendor.index', ['vendors' => $vendors]);
+        $supervisor = User::where('user_role_id', 3)->orderBy('id', 'DESC')->get();
+        return view('admin.supervisor.index', ['visor' => $supervisor]);
     }
 
     public function create()
     {
-        return view('admin.vendor.create');
+        return view('admin.supervisor.create');
     }
 
     public function store(Request $request)
@@ -29,8 +30,8 @@ class VendorController extends Controller
             'phone' => 'required',
             'password' => 'required|min:8',
         ]);
-        $vendor = User::create([
-            'user_role_id' => 2,
+        $supervisor = User::create([
+            'user_role_id' => 3,
             'username' => $request->email,
             'name' => $request->name,
             'email' => $request->email,
@@ -40,13 +41,13 @@ class VendorController extends Controller
         ]);
 
 
-        return redirect()->back()->with('success', 'Vendor created successfully!');
+        return redirect()->back()->with('success', 'Supervisor created successfully!');
     }
 
     public function edit($id)
     {
-        $vendor_edit = User::where('id', $id)->with('address')->first();
-        return view('admin.vendor.edit', ['vendor_edit' => $vendor_edit]);
+        $supervisor_edit = User::where('id', $id)->with('address')->first();
+        return view('admin.supervisor.edit', ['visor_edit' => $supervisor_edit]);
     }
 
     public function update(Request $request, $id)
@@ -78,7 +79,7 @@ class VendorController extends Controller
 
         $user->save();
 
-        return redirect()->back()->with('success', 'Vendor updated successfully!');
+        return redirect()->back()->with('success', 'Supervisor updated successfully!');
     }
 
     public function trash($id)
@@ -87,13 +88,13 @@ class VendorController extends Controller
         Address::where('addressable_id', $id)
             ->where('addressable_type', 'App\Models\User')
             ->delete();
-        return redirect()->back()->with('success', 'Vendor is in trash');
+        return redirect()->back()->with('success', 'Supervisor is in trash');
     }
 
     public function trashed()
     {
-        $users_trashed = User::onlyTrashed()->orderBy('id', 'DESC')->get();
-        return view('admin.vendor.trash', ['trashed' => $users_trashed]);
+        $visor_trashed = User::onlyTrashed()->orderBy('id', 'DESC')->get();
+        return view('admin.supervisor.trash', ['visor_trashed' => $visor_trashed]);
     }
 
     public function restore($id)
@@ -101,7 +102,7 @@ class VendorController extends Controller
         User::where('id', $id)->withTrashed()->restore();
         Address::where('addressable_id', $id)
             ->where('addressable_type', 'App\Models\User')->withTrashed()->restore();
-        return redirect()->back()->with('success', 'Vendor is Restored');
+        return redirect()->back()->with('success', 'supervisor is Restored');
     }
 
     public function delete($id)
@@ -109,6 +110,6 @@ class VendorController extends Controller
         User::where('id', $id)->withTrashed()->forceDelete();
         Address::where('addressable_id', $id)
             ->where('addressable_type', 'App\Models\User')->withTrashed()->forceDelete();
-        return redirect()->back()->with('success', 'Vendor is Deleted Sucessfully');
+        return redirect()->back()->with('success', 'supervisor is Deleted Sucessfully');
     }
 }
