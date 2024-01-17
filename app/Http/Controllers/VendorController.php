@@ -43,6 +43,13 @@ class VendorController extends Controller
         return redirect()->back()->with('success', 'Vendor created successfully!');
     }
 
+    public function show($id)
+    {
+        $vendor_detail = User::where('id', $id)->with('address')->with('image')->first();
+        $user_projects = Project::where('vendor_id', $id)->get();
+        return view('admin.vendor.view', ['user_project' => $user_projects, 'vendor_detail' => $vendor_detail]);
+    }
+
     public function edit($id)
     {
         $vendor_edit = User::where('id', $id)->with('address')->first();

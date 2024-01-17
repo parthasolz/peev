@@ -1,4 +1,4 @@
-<x-adminlayout title="Vendor">
+<x-adminlayout title="Vendor| Create">
     <div class="page-content">
         <div class="container-fluid">
 
@@ -31,7 +31,7 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="formrow-email-input" class="form-label">Name<span class="star">&#42;</span></label>
-                                            <input type="text" class="form-control" id="formrow-email-input" placeholder="Enter Your Name" name="name">
+                                            <input type="text"  name="name" value="{{old('name')}}" class="form-control" id="formrow-email-input" placeholder="Enter Your Name">
                                             <ul class="parsley-errors-list filled" id="parsley-id-25" aria-hidden="false">
                                                 @error('name')
                                                         <li class="parsley-required"> {{ $message }}</li>
@@ -43,7 +43,7 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="formrow-name-input" class="form-label">Email<span class="star">&#42;</span></label>
-                                            <input type="email" name="email" class="form-control" id="formrow-name-input" placeholder="Enter Your Email ID">
+                                            <input type="email" name="email" value="{{old('email')}}" class="form-control" id="formrow-name-input" placeholder="Enter Your Email ID">
                                             <ul class="parsley-errors-list filled" id="parsley-id-25" aria-hidden="false">
 
                                                 @error('email')
@@ -58,7 +58,7 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="formrow-phone-input" class="form-label">Phone<span class="star">&#42;</span></label>
-                                            <input type="text" name="phone" class="form-control" id="formrow-phone-input" placeholder="Enter Your Phone">
+                                            <input type="text" name="phone" value="{{old('phone')}}" class="form-control" id="formrow-phone-input" placeholder="Enter Your Phone">
                                             <ul class="parsley-errors-list filled" id="parsley-id-25" aria-hidden="false">
                                                 @error('phone')
                                                     <li class="parsley-required"> {{ $message }}</li>
@@ -84,7 +84,7 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="formrow-address1-input" class="form-label">Address Line 1</label>
-                                            <input type="text" name="address_line_1" class="form-control" id="formrow-address1-input" placeholder="Enter Your Address Line 1">
+                                            <input type="text" name="address_line_1" value="{{old('address_line_1')}}" class="form-control" id="formrow-address1-input" placeholder="Enter Your Address Line 1">
                                             <ul class="parsley-errors-list filled" id="parsley-id-25" aria-hidden="false">
                                                 @error('address_line_1')
                                                     <li class="parsley-required"> {{ $message }}</li>
@@ -96,7 +96,7 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="formrow-address2-input" class="form-label">Address Line 2</label>
-                                            <input type="text" name="address_line_2" class="form-control" id="formrow-address2-input" placeholder="Enter Your Address Line 2">
+                                            <input type="text" name="address_line_2" value="{{old('address_line_2')}}" class="form-control" id="formrow-address2-input" placeholder="Enter Your Address Line 2">
                                             <ul class="parsley-errors-list filled" id="parsley-id-25" aria-hidden="false">
                                                 @error('address_line_2')
                                                     <li class="parsley-required"> {{ $message }}</li>
@@ -110,32 +110,32 @@
                                     <div class="col-lg-3">
                                         <div class="mb-3">
                                             <label for="formrow-inputCity" class="form-label">Country</label>
-                                            <input type="text" name="country" class="form-control" id="formrow-inputCity" placeholder="Enter Your Living Country">
+                                            <input type="text" name="country" value="{{old('country')}}" class="form-control" id="formrow-inputCity" placeholder="Enter Your Living Country">
                                         </div>
                                     </div>
                                     <div class="col-lg-3">
                                         <div class="mb-3">
                                             <label for="formrow-inputCity" class="form-label">City</label>
-                                            <input type="text" name="city" class="form-control" id="formrow-inputCity" placeholder="Enter Your Living City">
+                                            <input type="text" name="city" value="{{old('city')}}" class="form-control" id="formrow-inputCity" placeholder="Enter Your Living City">
                                         </div>
                                     </div>
                                     <div class="col-lg-3">
                                         <div class="mb-3">
                                             <label for="formrow-inputState" class="form-label">State</label>
-                                            <input type="text" name="state" class="form-control" id="formrow-inputState" name="state" placeholder="Enter Your Living State">
+                                            <input type="text" name="state" value="{{old('state')}}" class="form-control" id="formrow-inputState" name="state" placeholder="Enter Your Living State">
                                         </div>
                                     </div>
                                     
                                     <div class="col-lg-3">
                                         <div class="mb-3">
                                             <label for="formrow-inputZip" class="form-label">Zip</label>
-                                            <input type="text" name="pin" class="form-control" id="formrow-inputZip" placeholder="Enter Your Zip Code">
+                                            <input type="text" name="pin" value="{{old('pin')}}" class="form-control" id="formrow-inputZip" placeholder="Enter Your Zip Code">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="mb-3">
                                     <label for="formrow-firstname-input" class="form-label">Description</label>
-                                    <textarea  class="form-control" name="description" id="formrow-firstname-input" placeholder="Enter Description Of Address" rows="5"></textarea>
+                                    <textarea  class="form-control" name="description" id="formrow-firstname-input" placeholder="Enter Description Of Address" rows="5">{{old('description')}}</textarea>
                                 </div>
                                 <div class="mb-3">
                                     <label for="status">Status : </label>

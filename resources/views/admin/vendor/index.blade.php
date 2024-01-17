@@ -55,7 +55,7 @@
                                             <td>
                                                 <a href="{{route('admin.vendor.edit',$user->id)}}"  class="btn btn-light btn-sm">Edit</a>
                                                 <a href="{{route('admin.vendor.trash',$user->id)}}" onclick="return confirm('Are u sure u wanna Trash this User, click ok to continue')" class="btn btn-light btn-sm">Delete</a>
-                                                <a class="btn btn-light btn-sm">View</a>
+                                                <a href="{{route('admin.vendor.show',$user->id)}}" class="btn btn-light btn-sm">View</a>
                                                 
                                                 {{-- <a class="btn btn-outline-secondary btn-sm edit" title="Edit">
                                                 <i class="fas fa-pencil-alt"></i>

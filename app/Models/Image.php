@@ -12,7 +12,7 @@ class Image extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable=[
+    protected $fillable = [
         'imageable_id',
         'imageable_type',
         'file_name',

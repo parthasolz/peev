@@ -59,6 +59,34 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="row task-dates">
+                                <div class="col-sm-4 col-6">
+                                    <div class="mt-4">
+                                        <h5 class="font-size-14"></i>SuperVisor </h5>
+                                            @foreach($users as $sup_vendor)
+                                            @if($sup_vendor->id===$detail->superVisor_id)
+                                            <p class="text-muted mb-0">{{$sup_vendor->name}}</p>
+                                            <p class="text-muted mb-0">{{$sup_vendor->email}}</p>
+                                            <p class="text-muted mb-0">{{$sup_vendor->phone}}</p>
+                                            @endif
+                                            @endforeach                                          
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4 col-6">
+                                    <div class="mt-4">
+                                        <h5 class="font-size-14"> Vendor</h5>
+                                        @foreach($users as $vendor)
+                                            @if($vendor->id===$detail->vendor_id)
+                                            <p class="text-muted mb-0">{{$vendor->name}}</p>
+                                            <p class="text-muted mb-0">{{$vendor->email}}</p>
+                                            <p class="text-muted mb-0">{{$vendor->phone}}</p>
+                                            @endif
+                                            @endforeach
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

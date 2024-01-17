@@ -20,11 +20,11 @@ class ProjectController extends Controller
         return view('admin.project.index', ['projects' => $project]);
     }
 
-    public function create()
+    public function create(Request $request)
     {
         $vendors = User::where('user_role_id', 2)->where('status', 1)->orderBy('id', 'DESC')->get();
         $superVisors = User::where('user_role_id', 3)->where('status', 1)->orderBy('id', 'DESC')->get();
-        return view('admin.project.create')->with(['vendo' => $vendors, 'svisors' => $superVisors]);
+        return view('admin.project.create')->with(['vendo' => $vendors, 'svisors' => $superVisors, 'id' => $request->id, 'sup_id' => $request->sup_id]);
     }
 
     public function store(Request $request)
@@ -99,8 +99,9 @@ class ProjectController extends Controller
     {
         $project_title = Project::find($id);
         $project_details = Project::whereId($id)->with('image')->get();
+        $user = User::where('status', 1)->get();
         return view('admin.project.view', compact('project_title'))->with([
-            'project_detail' => $project_details,
+            'project_detail' => $project_details, 'users' => $user,
         ]);
     }
 }

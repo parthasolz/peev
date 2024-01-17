@@ -1,4 +1,4 @@
-<x-adminlayout title="Vendor">
+<x-adminlayout title="Vendor| Trash">
     <div class="page-content">
         <div class="container-fluid">
 
