@@ -9,6 +9,9 @@
                         <h4 class="mb-sm-0 font-size-18">Projects </h4>
 
                         <div class="page-title-right">
+                            <div class="page-title-right">
+                                <a href="{{ route('admin.project.create') }}" class="btn btn-outline-secondary btn-sm">Add New</a>
+                            </div>
                             <ol class="breadcrumb m-0">
                                 <!-- <li class="breadcrumb-item"><a href="javascript: void(0);">Projects</a></li> -->
                                 <li class="breadcrumb-item active">Projects</li>
@@ -24,15 +27,8 @@
                 <div class="col-xl-12">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Basic example</h4>
-                            <p class="card-title-desc">For basic styling—light padding and
-                                    only horizontal dividers—add the base class <code>.table</code> to any
-                                    <code>&lt;table&gt;</code>.
-                            </p>    
-                            
                             <div class="table-responsive">
-                                <table class="table mb-0">
-
+                                <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
                                     <thead>
                                         <tr>
                                             <th>#</th>
@@ -40,6 +36,7 @@
                                             <th>Project Name</th>
                                             <th>Type</th>
                                             <th>Delivery Date</th>
+                                            <th>Status</th>
                                             <th>Options</th>
                                         </tr>
                                     </thead>
@@ -51,8 +48,16 @@
                                             <td><a href="{{ route('admin.project.show', $project['id']) }}">{{ $project->title }}</a></td>
                                             <td>{{ $project->type }}</td>
                                             <td>{{ $project->delivery_date }}</td>
+                                            @if($project->status==1)
+                                            @php $col='col_active' @endphp
+                                            @else
+                                            @php $col='col_inactive' @endphp
+                                            @endif
+                                            <td class="{{$col}}">{{$project->status == 1 ? 'Active' : 'Inactive' }}</td>
                                             <td>
-                                                
+                                                <a href="#"  class="btn btn-light btn-sm">Edit</a>
+                                                <a href="#" onclick="return confirm('Are u sure u wanna Trash this User, click ok to continue')" class="btn btn-light btn-sm">Delete</a>
+                                                <a class="btn btn-light btn-sm">View</a>
                                             </td>
                                         </tr>
                                         @endforeach

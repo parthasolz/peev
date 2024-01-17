@@ -11,8 +11,11 @@ use App\Models\Image;
 class Project extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     protected $fillable = [
+        'vendor_id',
+        'superVisor_id',
         'title',
         'details',
         'delivery_date',
@@ -26,5 +29,10 @@ class Project extends Model
     public function image(): MorphMany
     {
         return $this->morphMany(Image::class, 'imageable');
+    }
+
+    public function address()
+    {
+        return $this->morphMany(Address::class, 'addressable');
     }
 }

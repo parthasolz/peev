@@ -17,10 +17,10 @@ return new class extends Migration
             $table->string('addressable_type')->comment('user, project');
             $table->text('address_line_1')->nullable();
             $table->text('address_line_2')->nullable();
-            $table->string('pin');
-            $table->string('state');
-            $table->string('city');
-            $table->string('country');
+            $table->string('pin')->nullable();
+            $table->string('state')->nullable();
+            $table->string('city')->nullable();
+            $table->string('country')->nullable();
             $table->text('description')->nullable();
             $table->boolean('status')->default(1);
             $table->SoftDeletes();
