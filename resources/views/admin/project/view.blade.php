@@ -231,7 +231,7 @@
                                 @php $col='col_inactive' @endphp
                                 @endif
                                 <td class={{$col}}>{{$pro_meet->status==1? 'Active' :'Inactive'}}</td>
-                                <td><a href="#" class="btn btn-light btn-sm">conclusion</a></td>
+                                <td><a href="{{route('admin.meeting.show',$pro_meet->projectable_id)}}" class="btn btn-light btn-sm">conclusion</a></td>
                             </tr>
                             @endforeach
                         </tbody>
