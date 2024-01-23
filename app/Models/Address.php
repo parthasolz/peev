@@ -27,4 +27,9 @@ class Address extends Model
     {
         return $this->morphTo();
     }
+
+    public function project(): HasMany
+    {
+        return $this->hasMany(Project::class);
+    }
 }
