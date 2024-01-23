@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('delivery_date');
             $table->string('amenities');
             $table->string('type');
-            $table->string('registration_number');
+            $table->string('registration_number')->unique();
             $table->text('details');
             $table->string('price');
             $table->boolean('status')->default(1);

@@ -31,7 +31,9 @@ Route::prefix('admin/project')->middleware('auth')->group(function () {
     Route::get('/create', [ProjectController::class, 'create'])->name('admin.project.create');
     Route::get('/', [ProjectController::class, 'index'])->name('admin.project.index');
     Route::post('/store', [ProjectController::class, 'store'])->name('admin.project.store');
-    Route::get('view/{id}', [ProjectController::class, 'show'])->name('admin.project.show');
+    Route::get('/view/{id}', [ProjectController::class, 'show'])->name('admin.project.show');
+    Route::get('/edit/{id}', [ProjectController::class, 'edit'])->name('admin.project.edit');
+    Route::put('/update/{id}', [ProjectController::class, 'update'])->name('admin.project.update');
 });
 
 Route::prefix('admin/vendor')->middleware('auth')->group(function () {

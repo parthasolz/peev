@@ -55,7 +55,7 @@
                                             @endif
                                             <td class="{{$col}}">{{$project->status == 1 ? 'Active' : 'Inactive' }}</td>
                                             <td>
-                                                <a href="#"  class="btn btn-light btn-sm">Edit</a>
+                                                <a href="{{ route('admin.project.edit', $project['id']) }}" class="btn btn-light btn-sm">Edit</a>
                                                 <a href="#" onclick="return confirm('Are u sure u wanna Trash this User, click ok to continue')" class="btn btn-light btn-sm">Delete</a>
                                                 <a class="btn btn-light btn-sm">View</a>
                                             </td>

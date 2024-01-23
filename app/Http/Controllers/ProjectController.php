@@ -103,4 +103,64 @@ class ProjectController extends Controller
             'project_detail' => $project_details,
         ]);
     }
+
+    public function edit($id)
+    {
+        $project_details = Project::whereId($id)->with('address')->with('image')->first();
+
+        $vendors = User::where('user_role_id', 2)->where('status', 1)->orderBy('id', 'DESC')->get();
+        $superVisors = User::where('user_role_id', 3)->where('status', 1)->orderBy('id', 'DESC')->get();
+        return view('admin.project.edit')->with(['vendo' => $vendors, 'svisors' => $superVisors, 'project_detail' => $project_details]);
+    }
+
+    public function update(Request $request)
+    {
+
+        $project = Project::find($request->id);
+        $status = ($request->status) ? '1' : '0';
+
+        $request->validate([
+            'vendor_id' => 'required',
+            'superVisor_id' => 'required',
+            'title' => 'required|string',
+            'details' => 'required',
+            'delivery_date' => 'required',
+            'price' => 'required',
+            'type' => 'required',
+            'registration_number' => 'required',
+            'amenities' => 'required',
+            'address_line_1' => 'required',
+            'address_line_2' => 'required',
+            'pin' => 'required',
+            'state' => 'required',
+            'city' => 'required',
+            'country' => 'required',
+        ]);
+
+        $project->title = $request->title;
+        $project->details = $request->details;
+        $project->delivery_date = $request->delivery_date; // Corrected field name
+        $project->price = $request->price;
+        $project->type = $request->type;
+        $project->registration_number = $request->registration_number;
+        $project->amenities = $request->amenities;
+        $project->status = $status;
+
+        $project->save();
+
+        $project->address()->updateOrCreate(
+            [],
+            [
+                'address_line_1' => $request->address_line_1,
+                'address_line_2' => $request->address_line_2,
+                'pin' => $request->pin,
+                'state' => $request->state,
+                'city' => $request->city,
+                'country' => $request->country,
+                'description' => $request->additional_info,
+            ]
+        );
+
+        return redirect()->back()->with('success', 'Project updated successfully!');
+    }
 }
