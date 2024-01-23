@@ -1,20 +1,16 @@
-<x-adminlayout title="Project">
+<x-adminlayout title="Meetings">
     <div class="page-content">
         <div class="container-fluid">
 
             <!-- start page title -->
             <div class="row">
                 <div class="col-12">
-                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0 font-size-18">Projects </h4>
-
+                    <div class="page-title-box d-sm-flex align-items-center justify-content-between"> 
+                        <h4 class="mb-sm-0 font-size-18">Meetings </h4>                       
                         <div class="page-title-right">
-                            <div class="page-title-right">
-                                <a href="{{ route('admin.project.create') }}" class="btn btn-outline-secondary btn-sm">Add New</a>
-                            </div>
                             <ol class="breadcrumb m-0">
                                 <!-- <li class="breadcrumb-item"><a href="javascript: void(0);">Projects</a></li> -->
-                                <li class="breadcrumb-item active">Projects</li>
+                                <li class="breadcrumb-item active">Meetings</li>
                             </ol>
                         </div>
 
@@ -29,36 +25,35 @@
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
+
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Registration Number </th>
-                                            <th>Project Name</th>
-                                            <th>Type</th>
-                                            <th>Delivery Date</th>
+                                            <th>Title</th>
+                                            <th>Purpose</th>
+                                            <th>Date</th>
                                             <th>Status</th>
                                             <th>Options</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($projects as $project)
+                                        @foreach($project_meetings as $pro)
                                         <tr>
                                             <th scope="row">{{ $loop->iteration }}</th>
-                                            <td>{{ $project->registration_number  }}</td>
-                                            <td><a href="{{ route('admin.project.show', $project['id']) }}">{{ $project->title }}</a></td>
-                                            <td>{{ $project->type }}</td>
-                                            <td>{{ $project->delivery_date }}</td>
-                                            @if($project->status==1)
+                                            <td>{{ $pro->title  }}</td>
+                                            <td>{{$pro->purpose}}</td>
+                                            <td>{{ $pro->meeting_date }}</td>
+                                            @if($pro->status==1)
                                             @php $col='col_active' @endphp
                                             @else
                                             @php $col='col_inactive' @endphp
                                             @endif
-                                            <td class="{{$col}}">{{$project->status == 1 ? 'Active' : 'Inactive' }}</td>
+                                            <td class="{{$col}}">{{$pro->status == 1 ? 'Active' : 'Inactive' }}</td>
                                             <td>
-                                                <a href="#"  class="btn btn-light btn-sm">Edit</a>
-                                                <a href="#" onclick="return confirm('Are u sure u wanna Trash this User, click ok to continue')" class="btn btn-light btn-sm">Delete</a>
-                                                <a href="{{ route('admin.project.show', $project['id']) }}" class="btn btn-light btn-sm">View</a>
-                                            </td>
+                                                <a href="{{route('admin.meeting.edit',$pro->id)}}"  class="btn btn-light btn-sm">Edit</a>
+                                                <a href="{{route('admin.meeting.delete',$pro->id)}}" onclick="return confirm('Are u sure u wanna delete this meeting, click ok to continue')" class="btn btn-light btn-sm">Delete</a>
+                                                <a href="{{route('admin.meeting.show',$pro->projectable_id)}}" class="btn btn-light btn-sm">View</a>
+                                        </td>
                                         </tr>
                                         @endforeach
                                     </tbody>

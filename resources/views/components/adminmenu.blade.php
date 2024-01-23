@@ -55,6 +55,13 @@
                     </ul>
                 </li>
 
+                <li>
+                    <a href="{{ route('admin.meeting.index') }}">
+                        <i class="bx bx-briefcase-alt-2"></i>
+                        <span key="t-vendor">Meetings</span>
+                    </a>
+                </li>
+
             </ul>
         </div>
         <!-- Sidebar -->

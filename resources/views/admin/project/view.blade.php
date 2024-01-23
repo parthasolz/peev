@@ -32,6 +32,12 @@
                                     <h5 class="text-truncate font-size-15">{{ $detail->title }}</h5>
                                     <p class="text-muted">Registration Number: {{ $detail->registration_number }}</p>
                                 </div>
+
+                                @if($detail->status==1)
+                                <div class="page-title-right">
+                                    <a href="{{ route('admin.meeting.create',['id'=>$detail->id]) }}" class="btn btn-outline-secondary btn-sm">Create Meeting</a>
+                                </div>
+                                @endif
                             </div>
 
                             <h5 class="font-size-15 mt-4">Project Details :</h5>
@@ -125,6 +131,7 @@
                             </div>
                         </div>
                     </div>
+                   
                     <!-- <div class="card">
                         <div class="card-body">
                             <h4 class="card-title mb-4">Team Members</h4>
@@ -198,6 +205,38 @@
                     </div> -->
                 </div>
                 <!-- end col -->
+                <h2>Meetings</h2>
+                <div class="table-responsive">
+                    <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Title</th>
+                                <th>Purpose</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Options</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($detail->meeting as $pro_meet)
+                            <tr>
+                                <td>{{$loop->iteration}}</td>
+                                <td>{{$pro_meet->title}}</td>
+                                <td>{{$pro_meet->purpose}}</td>
+                                <td>{{$pro_meet->meeting_date}}</td>
+                                @if($pro_meet->status==1)
+                                @php $col='col_active' @endphp
+                                @else
+                                @php $col='col_inactive' @endphp
+                                @endif
+                                <td class={{$col}}>{{$pro_meet->status==1? 'Active' :'Inactive'}}</td>
+                                <td><a href="#" class="btn btn-light btn-sm">conclusion</a></td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
         </div> <!-- container-fluid -->

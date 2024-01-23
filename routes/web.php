@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\MeetingController;
 use App\Http\Controllers\SupervisorController;
 
 /*
@@ -58,4 +59,14 @@ Route::prefix('admin/supervisor')->middleware('auth')->group(function () {
     Route::get('/restore/{id}', [SupervisorController::class, 'restore'])->name('admin.supervisor.restore');
     Route::get('/trashed', [SupervisorController::class, 'trashed'])->name('admin.supervisor.trashed');
     Route::get('/delete/{id}', [SupervisorController::class, 'delete'])->name('admin.supervisor.delete');
+});
+
+Route::prefix('admin/meeting')->middleware('auth')->group(function () {
+    Route::get('/', [MeetingController::class, 'index'])->name('admin.meeting.index');
+    Route::get('/create', [MeetingController::class, 'create'])->name('admin.meeting.create');
+    Route::post('/store', [MeetingController::class, 'store'])->name('admin.meeting.store');
+    Route::get('/show/{id}', [MeetingController::class, 'show'])->name('admin.meeting.show');
+    Route::get('/edit/{id}', [MeetingController::class, 'edit'])->name('admin.meeting.edit');
+    Route::post('/update/{id}', [MeetingController::class, 'update'])->name('admin.meeting.update');
+    Route::get('/delete/{id}', [MeetingController::class, 'delete'])->name('admin.meeting.delete');
 });
