@@ -98,7 +98,7 @@ class ProjectController extends Controller
     public function show($id)
     {
         $project_title = Project::find($id);
-        $project_details = Project::whereId($id)->with('image')->get();
+        $project_details = Project::whereId($id)->with('image')->with('meeting')->get();
         $user = User::where('status', 1)->get();
         return view('admin.project.view', compact('project_title'))->with([
             'project_detail' => $project_details, 'users' => $user,

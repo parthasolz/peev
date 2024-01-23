@@ -35,4 +35,9 @@ class Project extends Model
     {
         return $this->morphMany(Address::class, 'addressable');
     }
+
+    public function meeting(): MorphMany
+    {
+        return $this->morphMany(Meeting::class, 'projectable');
+    }
 }
